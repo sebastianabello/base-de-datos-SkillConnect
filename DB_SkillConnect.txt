@@ -1,0 +1,48 @@
+CREATE TABLE Usuarios(
+	ID_Usuario int auto_increment,
+    Nombre varchar(255),
+    apellido varchar(255),
+    correo varchar(255),
+    Fecha_Nacimiento Date,
+    Ubicacion varchar(255),
+    contraseña varchar(255),
+    primary key (ID_Usuario)
+);
+
+CREATE TABLE Conexiones(
+	ID_Conexiones int auto_increment,
+    ID_Usuario_seguido int auto_increment,
+    Fecha_de_Seguido date,
+    primary key (ID_Conexiones)
+);
+
+Create TABLE Perfiles(
+	ID_Perfil int auto_increment,
+	ID_Usuario int,
+    Foto blob,
+    Descripcion varchar(255),
+    Celular varchar(20),
+	ID_Servicio int,
+    primary key (ID_Perfil),
+    foreign key (ID_Usuario) references Usuarios (ID_Usuario)
+);
+
+CREATE TABLE Mensajes(
+	ID_Mensajes varchar(255),
+    ID_Perfil int,
+	Contenido_Mensaje varchar(255),
+    Fecha_Envio date,
+    primary key (ID_Mensaje),
+    foreign key (ID_Perfil) references Perfiles (ID_Perfil)
+);
+
+CREATE TABLE Publicaciones(
+	ID_Publicacion int auto_increment,
+    ID_Usuario int,
+    Titulo varchar(100),
+    Descripcion_Servicio varchar (255),
+    Categoria varchar(100),
+    Fecha_Creacion date,
+    primary key (ID_Publicacion),
+    foreign key (ID_Usuario) references Usuarios (ID_Usuario)
+);
